@@ -2,10 +2,11 @@
 
 namespace LearnCSharp.Cmd
 {
-    public delegate int Arithmetic(int first, int second);
+    public delegate int Arithmetic<Z,Y>(Z first, Y second);
     public delegate void ArithmeticDelegate();
 
     public delegate Shape DrawDelegate();
+    public delegate void ShapeDelegate(int i);
 
     public class Shape
     {
@@ -26,6 +27,11 @@ namespace LearnCSharp.Cmd
 
         static void Main()
         {
+            ShapeDelegate shapeDelegate = i =>
+            {
+                Console.WriteLine(i);
+            };
+
             ArithmeticDelegate arithmeticDelegate = () =>
             {
 
@@ -33,7 +39,7 @@ namespace LearnCSharp.Cmd
            
                 DrawDelegate drawDelegate = DrawTriangle;
 
-            Arithmetic del = Add;
+            Arithmetic<int, int> del = Add;//Generic Delegate
             del += Minus;
             
 
